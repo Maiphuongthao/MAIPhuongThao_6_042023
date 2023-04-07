@@ -1,0 +1,38 @@
+@mixin button {
+  padding: 12px 18px;
+  font-size: 1rem;
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+}
+@mixin h3 {
+  background: $title-color;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+@mixin sizing($size, $size1) {
+  width: $size;
+  height: $size1;
+}
+@mixin commun-padding {
+  padding: 0 1%;
+}
+@mixin center {
+  margin: 0 auto;
+}
+@mixin flexbox {
+  display: flex;
+  justify-content: center;
+}
+@mixin flexnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@mixin media($breakpoint) {
+  @media only screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
