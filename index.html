@@ -15,84 +15,79 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <img src="./assets/logo/juststreamit.svg" alt="logo JustStreamit">
+                    <img src="./assets/logo/juststreamit.svg" alt="logo JustStreamit" />
                 </div>
                 <div class="left-nav" id="left-nav">
-                    <ul class=" menu">
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="#categories">Catégories</a></li>
+                    <ul class="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </header>
     <main>
         <section class="inner">
             <div class="banner">
-                <h1>
-                    Best Movie
-                </h1>
+                <h1>Best Movie</h1>
                 <h3 id="best-movie">Avengers: End Game</h3>
                 <p class="description">""</p>
                 <div class="banner-button flex">
-                    <button class="btn"><span class="fas fa-play play"></span>Play</button>
-                    <button class="btn btn1" aria-label="open modal"><span
-                            class="fa fa-info-circle play info"></span>More
-                        Info</button>
+                    <button class="btn">
+                        <span class="fas fa-play play"></span>Play
+                    </button>
+                    <button class="btn btn1" aria-label="open modal">
+                        <span class="fa fa-info-circle play info"></span>More Info
+                    </button>
                 </div>
             </div>
             <div class="carousel">
-                <h2>Categories</h2>
-                <div class="carousel-slider">
-                    <div class="carousel-list">
-                        <div class="carousel-item">
-                            <img src="./assets/logo/juststreamit.svg" alt="" />
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <div class="img-container">
             <div class="color-overlay">
-                <img id="cover" alt="" src="" />
+                <img id="cover" alt="#" src="#" />
             </div>
         </div>
-        <section class="modal hidden" id="modal">
-            <div class="modal-content">
-                <button aria-label="close modal" class="btn btn-close"><i class="fas fa-times"></i></button>
-                <div class="modal-image"></div>
-                <div class="modal-movie-info">
-                    <header>
-                        <h3 class="title" id="modal-title"></h3>
-                        <button class="btn"><span class="fas fa-play play"></span>Play</button>
-                    </header>
-
-                    <body class="modal-body">
-                        <div class="descriptions">
-                            <p class="date"></p>
-                            <div class="rate">
-                                <p class="rated"></p>
-                                <p class="imdb-score"></p>
-                            </div>
-                            <p class="duration"></p>
-                            <p class="genres"></p>
-                            <p class="description"></p>
-                        </div>
-                        <div class="infos">
-                            <p class="country"></p>
-                            <p class="actors"></p>
-                            <p class="director"></p>
-                        </div>
-                    </body>
-                </div>
-            </div>
-        </section>
-        <div class="overlay hidden"></div>
 
     </main>
-    <footer>
-    </footer>
+    <section class="modal hidden" id="modal">
+        <div class="modal-content">
+            <button aria-label="close modal" class="btn btn-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-image"></div>
+            <div class="modal-movie-info">
+                <div class="headding">
+                    <h3 class="title" id="modal-title">modal title</h3>
+                    <button class="btn">
+                        <span class="fas fa-play play"></span>Play
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="info1">
+                        <p>Genres: <span class="genres"></span></p>
+                        <p>Date published: <span class="date"></span></p>
+                        <div class="rate">
+                            <p>Rated: <span class="rated"><i class="fas fa-star star"></i></span></p>
+                            <p>IMDB Score: <span class="imdb-score"></span>/10</p>
+                        </div>
+                    </div>
+                    <div class="info2">
+                        <p>Director: <span class="directors"></span></p>
+                        <p>Actors: <span class="actors"></span></p>
+                        <p>Duration: <span class="duration"></span></p>
+                        <p>Country: <span class="country"></span></p>
+                        <p>Box Office: <span class="box-office"></span></p>
+                        <p>Description: <span class="modal-description"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="overlay hidden"></div>
+    <footer></footer>
     <script src="./index.js"></script>
 </body>
 

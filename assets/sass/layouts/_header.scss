@@ -1,7 +1,7 @@
 .container {
   width: $size1;
   position: relative;
-  background-color: transparent;
+  background-color: transparentize($color: #000000, $amount: 0.7);
   .navbar {
     @include flexnav;
     width: 85%;

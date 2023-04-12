@@ -4,15 +4,15 @@
 }
 html {
   font-size: 16px;
+  background-color: $back-ground-color;
 }
 h1,
-h2,
- {
+h2 {
   font-size: 2rem;
-  margin-top: 20px;
   letter-spacing: 3px;
   font-weight: 300;
   text-transform: capitalize;
+  color: $text-color;
 }
 h3 {
   @include h3;

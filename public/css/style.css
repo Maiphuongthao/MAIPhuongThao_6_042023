@@ -394,15 +394,16 @@ th {
 
 html {
   font-size: 16px;
+  background-color: #141414;
 }
 
 h1,
 h2 {
   font-size: 2rem;
-  margin-top: 20px;
   letter-spacing: 3px;
   font-weight: 300;
   text-transform: capitalize;
+  color: white;
 }
 
 h3 {
@@ -440,48 +441,76 @@ h3 {
   color: white;
   font-weight: 600;
   border: none;
-  background-color: black;
+  background-color: #141414;
 }
 
 .modal {
-  margin: -36% auto;
+  margin: -90% auto;
   position: relative;
-  background-color: black;
+  color: white;
+  background-color: #141414;
   border: none;
   border-radius: 15px;
   width: 80%;
-  height: 80vh;
   z-index: 2;
 }
 .modal .modal-content {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 1rem;
   width: 100%;
-  height: 80vh;
-  padding: 0 1%;
-  padding-left: 5%;
+  height: 100%;
+  background-color: transparent;
 }
-.modal .modal-image {
-  width: 100%;
-  height: 40vh;
-  position: absolute;
-  left: 0;
-  top: 0;
+.modal .modal-content .modal-image {
+  display: inline-block;
+  position: relative;
+  height: 50vh;
   margin: 0;
   padding: 0;
-  z-index: -5;
 }
-.modal .modal-image img {
+.modal .modal-content .modal-image img {
   width: 100%;
-  height: 40vh;
+  height: 100%;
   object-fit: contain;
 }
-.modal h3 {
+.modal .modal-content h3 {
   font-size: 2rem;
-  margin-top: 20px;
   margin-bottom: 15px;
+}
+.modal .modal-content .modal-movie-info {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.modal .modal-content .modal-movie-info .headding {
+  width: 100%;
+}
+.modal .modal-content .modal-movie-info .modal-body {
+  padding-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.modal .modal-content .modal-movie-info .modal-body .info1 {
+  width: 50%;
+}
+.modal .modal-content .modal-movie-info .modal-body .info2 {
+  width: 50%;
+}
+.modal .modal-content .modal-movie-info .modal-body p {
+  line-height: 1.5em;
+  color: #a9a9a9;
+}
+.modal .modal-content .modal-movie-info .modal-body p span {
+  color: white;
+}
+.modal .modal-content .yellow {
+  color: yellow;
 }
 
 .overlay {
@@ -505,7 +534,7 @@ h3 {
 .container {
   width: 100%;
   position: relative;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .container .navbar {
   display: flex;
@@ -557,6 +586,78 @@ h3 {
 .container .navbar .left-nav ul li a {
   color: inherit;
   text-decoration: none;
+}
+
+.carousel {
+  margin-top: 10%;
+  width: 100%;
+}
+.carousel .carousel-slider {
+  position: relative;
+  display: flexnav;
+  overflow: hidden;
+}
+@media only screen and (max-width: 1150px) {
+  .carousel .carousel-slider :hover {
+    visibility: visible;
+  }
+}
+.carousel .carousel-slider button .btn-nav {
+  border-radius: 5px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  outline: none;
+  border: none;
+  color: white;
+  z-index: 5;
+  visibility: hidden;
+}
+@media only screen and (max-width: 1150px) {
+  .carousel .carousel-slider button .btn-nav {
+    display: none;
+  }
+}
+.carousel .carousel-slider #moveLeft {
+  left: 0;
+}
+.carousel .carousel-slider #moveRight {
+  right: 0;
+}
+.carousel .carousel-slider h2 {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.carousel .carousel-slider .carousel-list {
+  margin-top: 20px;
+  margin-bottom: 35px;
+  width: 100%;
+  overflow-y: visible;
+  white-space: nowrap;
+  position: relative;
+}
+.carousel .carousel-slider .carousel-list .carousel-item {
+  display: inline-block;
+  position: relative;
+  padding: 0 2px;
+  font-size: 0.8rem;
+  transition: all 0.8s ease-in-out;
+}
+@media only screen and (max-width: 1150px) {
+  .carousel .carousel-slider .carousel-list .carousel-item :hover {
+    transform: scale(1.3);
+    z-index: 2;
+  }
+  .carousel .carousel-slider .carousel-list .carousel-item :hover img {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+.carousel .carousel-slider .carousel-list .carousel-item .carousel-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .inner {
@@ -613,7 +714,7 @@ h3 {
   color: white;
 }
 .inner .banner .play {
-  color: black;
+  color: #141414;
   margin: 0 5px;
 }
 .inner .banner .info {
@@ -624,15 +725,14 @@ h3 {
   width: 100%;
   height: 100vh;
   position: absolute;
-  background-color: black;
+  background-color: #141414;
   z-index: -6;
   left: 0;
   top: 0;
 }
 .img-container img {
   width: 100%;
-  height: 100vh;
-  object-fit: contain;
+  height: 100%;
 }
 .img-container .color-overlay {
   width: 100%;
@@ -641,56 +741,6 @@ h3 {
   top: 0;
   left: 0;
   opacity: 0.5;
-}
-
-.carousel {
-  width: 93%;
-  position: absolute;
-  bottom: 0;
-  overflow: hidden;
-  border-radius: 20px;
-  padding: 0 1%;
-}
-
-.carousel h2 {
-  color: #fff;
-  font-size: 1.5rem;
-}
-
-.carousel-slider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 250px;
-  padding: 0 50px;
-}
-
-.carousel-list {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 50px;
-}
-
-.carousel-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  height: 180px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin: 0 7px;
-  object-fit: fill;
-  cursor: pointer;
-}
-
-.carousel-item img {
-  width: 100%;
-  height: 100px;
-  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

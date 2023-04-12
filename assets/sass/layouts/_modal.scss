@@ -1,0 +1,77 @@
+.modal {
+  margin: -90% auto;
+  position: relative;
+  color: $text-color;
+  background-color: $back-ground-color;
+  border: none;
+  border-radius: $border-radius;
+  width: $size0-8;
+  z-index: 2;
+  .modal-content {
+    @include flexbox;
+    flex-direction: column;
+
+    @include sizing($size1, $size1);
+    background-color: transparent;
+    .modal-image {
+      display: inline-block;
+      position: relative;
+      height: 50vh;
+      margin: 0;
+      padding: 0;
+      img {
+        @include sizing($size1, $size1);
+        object-fit: contain;
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    .modal-movie-info {
+      @include sizing($size1, 50%);
+      @include flexnav;
+      padding-left: 5%;
+      padding-right: 5%;
+      .headding {
+        width: $size1;
+      }
+      .modal-body {
+        padding-top: 3%;
+        @include flexnav;
+        .info1 {
+          width: 50%;
+        }
+        .info2 {
+          width: 50%;
+        }
+        p {
+          line-height: 1.5em;
+          color: #a9a9a9;
+          span {
+            color: $text-color;
+          }
+        }
+      }
+    }
+    .yellow {
+      color: yellow;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include sizing($size1, $size1);
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+.hidden {
+  display: none;
+}
