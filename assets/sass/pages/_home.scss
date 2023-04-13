@@ -1,70 +1,76 @@
+.home {
+  background-color: black;
+}
 .inner {
-  max-width: 95%;
+  width: 70%;
+  height: 80vh;
   @include center;
-  @include commun-padding;
   .banner {
-    width: 60%;
-    height: auto;
-    @include flexbox;
-    flex-direction: column;
+    display: flex;
+    gap: 10%;
     color: $text-color;
-    padding-top: 100px;
-    @include media($media768) {
-      padding: 50px;
-    }
-    h3 {
-      font-size: 5rem;
-      @include media($media1150) {
-        .banner h3 {
-          font-size: 3.8rem;
+
+    .best-movie-info {
+      padding-top: 100px;
+      width: 50%;
+      @include media(798px) {
+        width: 100%;
+        z-index: 2;
+      }
+      h3 {
+        font-size: 5rem;
+        @include media($media1150) {
+          .banner h3 {
+            font-size: 2rem;
+          }
+        }
+        @include media($media768) {
+          font-size: 2rem;
+        }
+        @include media($media550) {
+          font-size: 2rem;
         }
       }
-      @include media($media768) {
-        font-size: 3rem;
+      p {
+        font-size: 1rem;
+        margin-top: 20px;
+        letter-spacing: 3px;
       }
-      @include media($media550) {
-        font-size: 3rem;
+      .banner-button {
+        @include flexnav;
+        justify-content: flex-start;
+        padding: 0;
+      }
+      .btn1 {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: $text-color;
+        @include media(396px) {
+          margin-top: 15px;
+        }
+      }
+      .play {
+        color: $back-ground-color;
+        margin: 0 5px;
+      }
+      .info {
+        color: $text-color;
       }
     }
-    p {
-      font-size: 1rem;
-      margin-top: 20px;
-      letter-spacing: 3px;
-    }
-    .banner-button {
-      @include flexnav;
-      justify-content: flex-start;
-      padding: 0;
-    }
-    .btn1 {
-      background-color: rgba(255, 255, 255, 0.5);
-      color: $text-color;
-    }
-    .play {
-      color: $back-ground-color;
-      margin: 0 5px;
-    }
-    .info {
-      color: $text-color;
-    }
-  }
-}
 
-.img-container {
-  @include sizing($size1, $size10);
-  position: absolute;
-  background-color: $back-ground-color;
-  z-index: -6;
-  left: 0;
-  top: 0;
-  img {
-    @include sizing($size1, $size1);
-  }
-  .color-overlay {
-    @include sizing($size1, $size10);
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.5;
+    .img-container {
+      padding-top: 25px;
+      width: 40%;
+      @include media($media768) {
+        position: absolute;
+        padding-top: 0;
+        width: 70%;
+        height: 80vh;
+        z-index: 1;
+        opacity: 0.5;
+      }
+      img {
+        @include sizing($size1, $size1);
+      }
+    }
   }
 }

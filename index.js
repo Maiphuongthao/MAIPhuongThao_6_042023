@@ -102,13 +102,10 @@ const fetchModalData = (url) => {
     .catch((err) => console.log(err));
 };
 
-const carousel = document.getElementsByClassName("carousel")[0];
-
 const getCategory = async (name, total = 7) => {
   url = `${base_url}?sort_by=-imdb_score&genre=${name}`;
   const data = await fetchData(url);
   let movies = Array(...data.results);
-  console.log("movies " + movies.length);
   if (name === "") {
     movies = movies.slice(1, total + 1);
   }
@@ -118,10 +115,14 @@ const getCategory = async (name, total = 7) => {
     movies = movies.slice(0, total);
   }
 
-  console.log(movies);
-
   return movies;
 };
+
+//carousel
+const carousel = document.getElementsByClassName("carousel")[0];
+const indicators = document.querySelectorAll(".indicator");
+let activeIndex = 0;
+
 const buildCarousel = async (category, name) => {
   carousel.setAttribute("id", "categories");
   const carouselSlider = document.createElement("div");
@@ -144,7 +145,6 @@ const buildCarousel = async (category, name) => {
   }
 
   const movies = await getCategory(category_name);
-  console.log("movies " + movies);
   let i = 0;
   movies.forEach((movie) => {
     const carouselItem = document.createElement("div");
@@ -157,11 +157,6 @@ const buildCarousel = async (category, name) => {
     carouselItem.setAttribute("id", `${name}${i + 1}`);
     carouselImg.src = movie.image_url;
     carouselImg.setAttribute("alt", `${movie.title}`);
-    const box = document.createElement("div");
-    carouselItem.appendChild(box);
-    const movieTitle = document.createElement("h4");
-    modalTitle.innerHTML = movie.title;
-    box.appendChild(movieTitle);
     carouselImg.addEventListener("click", function (e) {
       e.preventDefault;
       openModal(movie.url);
@@ -171,49 +166,89 @@ const buildCarousel = async (category, name) => {
   /*Create slide button*/
   const carouselBtn1 = document.createElement("button");
   carouselBtn1.setAttribute("type", "button");
-  carouselBtn1.setAttribute("id", "moveLeft");
-  carouselBtn1.classList.add("btn-nav");
-  carouselBtn1.innerHTML = "ᐊ";
-  carouselList.prepend(carouselBtn1);
+  carouselBtn1.classList.add("move-left", "hidden");
+  carouselBtn1.innerHTML = "<i class='fas fa-arrow-left'></i>";
+  carouselSlider.prepend(carouselBtn1);
   const carouselBtn2 = document.createElement("button");
   carouselBtn2.setAttribute("type", "button");
-  carouselBtn2.setAttribute("id", "moveRight");
-  carouselBtn2.classList.add("btn-nav");
-  carouselBtn2.innerHTML = "ᐅ";
-  carouselList.appendChild(carouselBtn2);
-  let activeIndex = 0;
+  carouselBtn2.classList.add("move-right", "hidden");
+  carouselBtn2.innerHTML = "<i class='fas fa-arrow-right'></i>";
+  carouselSlider.appendChild(carouselBtn2);
 
   carouselBtn1.addEventListener("click", (e) => {
-    let movieWidth = carouselList.getBoundingClientRect().width;
-    let scrollDistance = movieWidth * 2;
-    carouselList.scrollBy({
-      top: 0,
-      left: -scrollDistance,
-      behavior: "smooth",
-    });
-    activeIndex = activeIndex - 1;
+    e.preventDefault();
+    moveLeft(carouselList);
   });
 
   carouselBtn2.addEventListener("click", (e) => {
-    let movieWidth = carouselList.getBoundingClientRect().width;
-    let scrollDistance = movieWidth * 2;
-    if (activeIndex == 2) {
-      carouselList.scrollBy({
-        top: 0,
-        left: +scrollDistance,
-        behavior: "smooth",
-      });
-      activeIndex = 0;
-    } else {
-      carouselList.scrollBy({
-        top: 0,
-        left: +scrollDistance,
-        behavior: "smooth",
-      });
-      activeIndex = activeIndex + 1;
-    }
+    e.preventDefault();
+    moveRight(carouselList);
   });
 };
+
+function moveLeft(carouselList) {
+  let movieWidth = document
+    .querySelector(".carousel-item")
+    .getBoundingClientRect().width;
+  let scrollDistance = movieWidth * 4;
+  carouselList.scrollBy({
+    top: 0,
+    left: -scrollDistance,
+    behavior: "smooth",
+  });
+  activeIndex = (activeIndex - 1) % 3;
+  console.log(activeIndex);
+  updateIndicators(activeIndex);
+}
+
+function moveRight(carouselList) {
+  let movieWidth = document
+    .querySelector(".carousel-item")
+    .getBoundingClientRect().width;
+  let scrollDistance = movieWidth * 4;
+
+  console.log(`movieWidth = ${movieWidth}`);
+  console.log(`scrolling right ${scrollDistance}`);
+
+  // if we're on the last page
+  if (activeIndex == 2) {
+    populateSlider();
+    carouselList.scrollBy({
+      top: 0,
+      left: +scrollDistance,
+      behavior: "smooth",
+    });
+    activeIndex = 0;
+    updateIndicators(activeIndex);
+  } else {
+    carouselList.scrollBy({
+      top: 0,
+      left: +scrollDistance,
+      behavior: "smooth",
+    });
+    activeIndex = (activeIndex + 1) % 3;
+    console.log(activeIndex);
+    updateIndicators(activeIndex);
+  }
+}
+
+function updateIndicators(index) {
+  indicators.forEach((indicator) => {
+    indicator.classList.remove("active");
+  });
+  let newActiveIndicator = indicators[index];
+  newActiveIndicator.classList.add("active");
+}
+
+function turnRight() {
+  let lists = document.getElementsByClassName("carousel-list");
+  let items = document.getElementsByClassName("carousel-item");
+}
+
+function showArrow(btn1, btn2) {
+  btn1.classList.remove("hidden");
+  btn2.classList.remove("hidden");
+}
 
 buildCarousel("Best-rated", "best");
 buildCarousel("Comedy", "comedy");

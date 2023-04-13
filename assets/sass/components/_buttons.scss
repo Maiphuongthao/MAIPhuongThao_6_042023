@@ -1,18 +1,25 @@
 .banner .btn {
   @include button;
   margin: 50px 10px 0 11px;
-}
-.modal .btn {
-  @include button;
-}
-.btn-close{
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: $font-size-1;
-    color: $text-color;
-    font-weight: 600;
-    border: none;
-    background-color:$back-ground-color;
   
-  }
+}
+.modal .btn-play {
+  @include button;
+  color: black;
+}
+.btn-close {
+  @include button;
+  width: 40px;
+  @include flexbox;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+.move-left {
+left: 0;
+top: 50%;
+}
+.move-right {
+right: 0;
+top: 50%;
+}

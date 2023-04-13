@@ -1,27 +1,28 @@
 .modal {
-  margin: -90% auto;
-  position: relative;
-  color: $text-color;
+  position: fixed;
+  transform: translate(13%, 5%);
+  top: 0;
   background-color: $back-ground-color;
   border: none;
   border-radius: $border-radius;
   width: $size0-8;
   z-index: 2;
+  scroll-behavior: smooth;
   .modal-content {
     @include flexbox;
-    flex-direction: column;
-
+    gap: 3%;
+    padding: 1%;
     @include sizing($size1, $size1);
     background-color: transparent;
     .modal-image {
       display: inline-block;
       position: relative;
-      height: 50vh;
+      width: 40%;
       margin: 0;
       padding: 0;
       img {
         @include sizing($size1, $size1);
-        object-fit: contain;
+        object-fit: cover;
       }
     }
     h3 {
@@ -29,24 +30,23 @@
       margin-bottom: 15px;
     }
     .modal-movie-info {
-      @include sizing($size1, 50%);
+      @include sizing(56%, $size1);
       @include flexnav;
-      padding-left: 5%;
-      padding-right: 5%;
+      margin: 5%;
       .headding {
         width: $size1;
       }
       .modal-body {
         padding-top: 3%;
         @include flexnav;
+        gap: 4px;
         .info1 {
-          width: 50%;
+          width: 45%;
         }
         .info2 {
-          width: 50%;
+          width: 45%;
         }
         p {
-          line-height: 1.5em;
           color: #a9a9a9;
           span {
             color: $text-color;

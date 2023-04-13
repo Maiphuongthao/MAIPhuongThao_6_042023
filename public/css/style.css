@@ -423,7 +423,7 @@ h3 {
   margin: 50px 10px 0 11px;
 }
 
-.modal .btn {
+.modal .btn-play {
   padding: 12px 18px;
   font-size: 1rem;
   color: black;
@@ -431,33 +431,51 @@ h3 {
   border: none;
   border-radius: 3px;
   background-color: #fff;
+  color: black;
 }
 
 .btn-close {
+  padding: 12px 18px;
+  font-size: 1rem;
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  width: 40px;
+  display: flex;
+  justify-content: center;
   position: absolute;
   top: 20px;
   right: 25px;
-  font-size: 1.5rem;
-  color: white;
-  font-weight: 600;
-  border: none;
-  background-color: #141414;
+}
+
+.move-left {
+  left: 0;
+  top: 50%;
+}
+
+.move-right {
+  right: 0;
+  top: 50%;
 }
 
 .modal {
-  margin: -90% auto;
-  position: relative;
-  color: white;
+  position: fixed;
+  transform: translate(13%, 5%);
+  top: 0;
   background-color: #141414;
   border: none;
   border-radius: 15px;
   width: 80%;
   z-index: 2;
+  scroll-behavior: smooth;
 }
 .modal .modal-content {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  gap: 3%;
+  padding: 1%;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -465,27 +483,26 @@ h3 {
 .modal .modal-content .modal-image {
   display: inline-block;
   position: relative;
-  height: 50vh;
+  width: 40%;
   margin: 0;
   padding: 0;
 }
 .modal .modal-content .modal-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 .modal .modal-content h3 {
   font-size: 2rem;
   margin-bottom: 15px;
 }
 .modal .modal-content .modal-movie-info {
-  width: 100%;
-  height: 50%;
+  width: 56%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
+  margin: 5%;
 }
 .modal .modal-content .modal-movie-info .headding {
   width: 100%;
@@ -495,15 +512,15 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 4px;
 }
 .modal .modal-content .modal-movie-info .modal-body .info1 {
-  width: 50%;
+  width: 45%;
 }
 .modal .modal-content .modal-movie-info .modal-body .info2 {
-  width: 50%;
+  width: 45%;
 }
 .modal .modal-content .modal-movie-info .modal-body p {
-  line-height: 1.5em;
   color: #a9a9a9;
 }
 .modal .modal-content .modal-movie-info .modal-body p span {
@@ -589,39 +606,43 @@ h3 {
 }
 
 .carousel {
-  margin-top: 10%;
-  width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  width: 70%;
+}
+.carousel .container-indicators {
+  width: 100px;
+  position: absolute;
+  right: 0;
+  top: calc(var(--slider-py) - 60px);
+  visibility: hidden;
+}
+.carousel .container-indicators .indicator {
+  width: 15px;
+  height: 2px;
+  background-color: grey;
+  display: inline-block;
+}
+.carousel .container-indicators .indicator.active {
+  background-color: white;
 }
 .carousel .carousel-slider {
-  position: relative;
-  display: flexnav;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
-@media only screen and (max-width: 1150px) {
-  .carousel .carousel-slider :hover {
-    visibility: visible;
-  }
-}
-.carousel .carousel-slider button .btn-nav {
-  border-radius: 5px;
+.carousel .carousel-slider button {
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.3);
   outline: none;
   border: none;
   color: white;
+  font-size: 1.5rem;
   z-index: 5;
-  visibility: hidden;
-}
-@media only screen and (max-width: 1150px) {
-  .carousel .carousel-slider button .btn-nav {
-    display: none;
-  }
-}
-.carousel .carousel-slider #moveLeft {
-  left: 0;
-}
-.carousel .carousel-slider #moveRight {
-  right: 0;
 }
 .carousel .carousel-slider h2 {
   width: 100%;
@@ -629,19 +650,22 @@ h3 {
   font-weight: 600;
 }
 .carousel .carousel-slider .carousel-list {
+  position: relative;
+  display: flex;
   margin-top: 20px;
   margin-bottom: 35px;
-  width: 100%;
-  overflow-y: visible;
   white-space: nowrap;
-  position: relative;
+  overflow-x: scroll;
+  overflow-y: visible;
 }
 .carousel .carousel-slider .carousel-list .carousel-item {
-  display: inline-block;
   position: relative;
-  padding: 0 2px;
+  width: 60%;
+  padding-right: 30px;
   font-size: 0.8rem;
-  transition: all 0.8s ease-in-out;
+}
+.carousel .carousel-slider .carousel-list .carousel-item :hover {
+  transform: scale(1.3);
 }
 @media only screen and (max-width: 1150px) {
   .carousel .carousel-slider .carousel-list .carousel-item :hover {
@@ -660,87 +684,93 @@ h3 {
   object-fit: cover;
 }
 
+.home {
+  background-color: black;
+}
+
 .inner {
-  max-width: 95%;
+  width: 70%;
+  height: 80vh;
   margin: 0 auto;
-  padding: 0 1%;
 }
 .inner .banner {
-  width: 60%;
-  height: auto;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  gap: 10%;
   color: white;
-  padding-top: 100px;
 }
-@media only screen and (max-width: 768px) {
-  .inner .banner {
-    padding: 50px;
+.inner .banner .best-movie-info {
+  padding-top: 100px;
+  width: 50%;
+}
+@media only screen and (max-width: 798px) {
+  .inner .banner .best-movie-info {
+    width: 100%;
+    z-index: 2;
   }
 }
-.inner .banner h3 {
+.inner .banner .best-movie-info h3 {
   font-size: 5rem;
 }
 @media only screen and (max-width: 1150px) {
-  .inner .banner h3 .banner h3 {
-    font-size: 3.8rem;
+  .inner .banner .best-movie-info h3 .banner h3 {
+    font-size: 2rem;
   }
 }
-@media only screen and (max-width: 768px) {
-  .inner .banner h3 {
-    font-size: 3rem;
+@media only screen and (max-width: 797px) {
+  .inner .banner .best-movie-info h3 {
+    font-size: 2rem;
   }
 }
 @media only screen and (max-width: 550px) {
-  .inner .banner h3 {
-    font-size: 3rem;
+  .inner .banner .best-movie-info h3 {
+    font-size: 2rem;
   }
 }
-.inner .banner p {
+.inner .banner .best-movie-info p {
   font-size: 1rem;
   margin-top: 20px;
   letter-spacing: 3px;
 }
-.inner .banner .banner-button {
+.inner .banner .best-movie-info .banner-button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   justify-content: flex-start;
   padding: 0;
 }
-.inner .banner .btn1 {
+.inner .banner .best-movie-info .btn1 {
   background-color: rgba(255, 255, 255, 0.5);
   color: white;
 }
-.inner .banner .play {
+@media only screen and (max-width: 396px) {
+  .inner .banner .best-movie-info .btn1 {
+    margin-top: 15px;
+  }
+}
+.inner .banner .best-movie-info .play {
   color: #141414;
   margin: 0 5px;
 }
-.inner .banner .info {
+.inner .banner .best-movie-info .info {
   color: white;
 }
-
-.img-container {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  background-color: #141414;
-  z-index: -6;
-  left: 0;
-  top: 0;
+.inner .banner .img-container {
+  padding-top: 25px;
+  width: 40%;
 }
-.img-container img {
+@media only screen and (max-width: 797px) {
+  .inner .banner .img-container {
+    position: absolute;
+    padding-top: 0;
+    width: 70%;
+    height: 80vh;
+    z-index: 1;
+    opacity: 0.5;
+  }
+}
+.inner .banner .img-container img {
   width: 100%;
   height: 100%;
-}
-.img-container .color-overlay {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
 }
 
 /*# sourceMappingURL=style.css.map */
