@@ -84,15 +84,15 @@ const fetchModalData = (url) => {
     .then((data) => {
       modalCoverImage.src = data["image_url"];
       modalTitle.innerHTML = data["title"];
-      genres.innerHTML = data["genres"];
+      genres.innerHTML = syntaxText(data["genres"]);
       date.innerHTML = data["date_published"];
       rated.innerHTML = getRatedStar(data["rated"]);
       imdbScore.innerHTML = data["imdb_score"];
       imdbScore.style.fontWeight = "600";
-      directors.innerHTML = data["directors"];
-      actors.innerHTML = data["actors"];
+      directors.innerHTML = syntaxText(data["directors"]);
+      actors.innerHTML = syntaxText(data["actors"]);
       duration.innerHTML = data["duration"];
-      country.innerHTML = data["countries"];
+      country.innerHTML = syntaxText(data["countries"]);
       money = data["worldwide_gross_income"] + data["budget_currency"];
       if (data["worldwide_gross_income"] === null) {
         boxOffice.innerHTML = "N/A";
@@ -102,6 +102,16 @@ const fetchModalData = (url) => {
       modalDescription.innerHTML = data["long_description"];
     })
     .catch((err) => console.log(err));
+};
+
+const syntaxText = (data) => {
+  let length = data.length;
+  let text = "";
+  for (i = 0; i <= length - 1; i++) {
+    let li = data[i];
+    text += li + ", ";
+  }
+  return text;
 };
 
 const getCategory = async (name, total = 7) => {
