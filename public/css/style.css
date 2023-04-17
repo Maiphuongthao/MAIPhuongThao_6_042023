@@ -617,15 +617,6 @@ h3 {
   top: calc(var(--slider-py) - 60px);
   visibility: hidden;
 }
-.carousel .container-indicators .indicator {
-  width: 15px;
-  height: 2px;
-  background-color: grey;
-  display: inline-block;
-}
-.carousel .container-indicators .indicator.active {
-  background-color: white;
-}
 .carousel .carousel-slider {
   display: flex;
   flex-direction: column;
@@ -650,19 +641,21 @@ h3 {
   font-weight: 600;
 }
 .carousel .carousel-slider .carousel-list {
-  position: relative;
   display: flex;
   margin-top: 20px;
   margin-bottom: 35px;
   white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: visible;
 }
 .carousel .carousel-slider .carousel-list .carousel-item {
   position: relative;
-  width: 60%;
-  padding-right: 30px;
+  width: 100%;
+  margin-right: 48px;
   font-size: 0.8rem;
+}
+@media only screen and (max-width: 1150px) {
+  .carousel .carousel-slider .carousel-list .carousel-item {
+    margin-right: 1%;
+  }
 }
 .carousel .carousel-slider .carousel-list .carousel-item :hover {
   transform: scale(1.3);

@@ -12,21 +12,23 @@ async function fetchData(url) {
   return data;
 }
 
-fetchData(base_url + "?sort_by=-imdb_score")
-  .then((data) => {
-    bestMovie.innerHTML = data["results"][0]["title"];
-    image.src = data["results"][0]["image_url"];
-    image.alt = "best movie cover";
-    let url = data["results"][0]["url"];
-    fetchData(url).then((res) => {
-      description.innerHTML = res["description"];
-    });
-    btn1.addEventListener("click", function (e) {
-      e.preventDefault;
-      openModal(url);
-    });
-  })
-  .catch((err) => console.log(err));
+const fetchMoviecover = () => {
+  fetchData(base_url + "?sort_by=-imdb_score")
+    .then((data) => {
+      bestMovie.innerHTML = data["results"][0]["title"];
+      image.src = data["results"][0]["image_url"];
+      image.alt = "best movie cover";
+      let url = data["results"][0]["url"];
+      fetchData(url).then((res) => {
+        description.innerHTML = res["description"];
+      });
+      btn1.addEventListener("click", function (e) {
+        e.preventDefault;
+        openModal(url);
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
 let modal = document.getElementById("modal");
 let btnClose = document.getElementsByClassName("btn-close")[0];
@@ -163,94 +165,77 @@ const buildCarousel = async (category, name) => {
     });
     i++;
   });
+
   /*Create slide button*/
   const carouselBtn1 = document.createElement("button");
   carouselBtn1.setAttribute("type", "button");
+
   carouselBtn1.classList.add("move-left", "hidden");
   carouselBtn1.innerHTML = "<i class='fas fa-arrow-left'></i>";
   carouselSlider.prepend(carouselBtn1);
   const carouselBtn2 = document.createElement("button");
   carouselBtn2.setAttribute("type", "button");
-  carouselBtn2.classList.add("move-right", "hidden");
+
+  carouselBtn2.classList.add("move-right");
   carouselBtn2.innerHTML = "<i class='fas fa-arrow-right'></i>";
   carouselSlider.appendChild(carouselBtn2);
+  let left = carouselSlider.querySelector(".move-left");
+  console.log("slide===" + left);
 
-  carouselBtn1.addEventListener("click", (e) => {
-    e.preventDefault();
-    moveLeft(carouselList);
-  });
-
-  carouselBtn2.addEventListener("click", (e) => {
-    e.preventDefault();
-    moveRight(carouselList);
-  });
+  carouselize(carouselSlider, carouselBtn1, carouselBtn2);
 };
 
-function moveLeft(carouselList) {
-  let movieWidth = document
-    .querySelector(".carousel-item")
-    .getBoundingClientRect().width;
-  let scrollDistance = movieWidth * 4;
-  carouselList.scrollBy({
-    top: 0,
-    left: -scrollDistance,
-    behavior: "smooth",
+function carouselize(slider, btn1, btn2) {
+  const list = slider.querySelector(".carousel-list");
+
+  let listWidth = 0;
+  let listStep = 0;
+  let items = slider.querySelectorAll(".carousel-item");
+  let amount = 0;
+  let amountVisible = 4;
+  if (window.matchMedia("(max-width:1150px)").matches) {
+    amountVisible = 3;
+  } else if (window.matchMedia("(max-width:733px)").matches) {
+    amountVisible = 2;
+  } else if (window.matchMedia("(max-width:550px)").matches) {
+    amountVisible = 1;
+  }
+
+  // Count movie in list movies and return 7
+  items.forEach((item) => {
+    amount++;
   });
-  activeIndex = (activeIndex - 1) % 3;
-  console.log(activeIndex);
-  updateIndicators(activeIndex);
-}
+  btn2.onclick = function () {
+    if (listStep < amount - amountVisible) {
+      listStep++;
+      moveItem();
+      if (listStep == amount - amountVisible) {
+        btn2.classList.add("hidden");
+        btn1.classList.remove("hidden");
+      }
+    }
+  };
+  btn1.onclick = function () {
+    if (listStep > 0) {
+      listStep--;
+      moveItem();
+      if (listStep === 0) {
+        btn1.classList.add("hidden");
+        btn2.classList.remove("hidden");
+      }
+    }
+  };
 
-function moveRight(carouselList) {
-  let movieWidth = document
-    .querySelector(".carousel-item")
-    .getBoundingClientRect().width;
-  let scrollDistance = movieWidth * 4;
-
-  console.log(`movieWidth = ${movieWidth}`);
-  console.log(`scrolling right ${scrollDistance}`);
-
-  // if we're on the last page
-  if (activeIndex == 2) {
-    populateSlider();
-    carouselList.scrollBy({
-      top: 0,
-      left: +scrollDistance,
-      behavior: "smooth",
-    });
-    activeIndex = 0;
-    updateIndicators(activeIndex);
-  } else {
-    carouselList.scrollBy({
-      top: 0,
-      left: +scrollDistance,
-      behavior: "smooth",
-    });
-    activeIndex = (activeIndex + 1) % 3;
-    console.log(activeIndex);
-    updateIndicators(activeIndex);
+  function moveItem() {
+    list.style.transform = "translate(-" + 250 * listStep + "px)";
   }
 }
 
-function updateIndicators(index) {
-  indicators.forEach((indicator) => {
-    indicator.classList.remove("active");
-  });
-  let newActiveIndicator = indicators[index];
-  newActiveIndicator.classList.add("active");
-}
-
-function turnRight() {
-  let lists = document.getElementsByClassName("carousel-list");
-  let items = document.getElementsByClassName("carousel-item");
-}
-
-function showArrow(btn1, btn2) {
-  btn1.classList.remove("hidden");
-  btn2.classList.remove("hidden");
-}
-
-buildCarousel("Best-rated", "best");
-buildCarousel("Comedy", "comedy");
-buildCarousel("Family", "family");
-buildCarousel("Sport", "sport");
+window.addEventListener("load", (e) => {
+  e.preventDefault();
+  fetchMoviecover();
+  buildCarousel("Best-rated", "best");
+  buildCarousel("Comedy", "comedy");
+  buildCarousel("Family", "family");
+  buildCarousel("Sport", "sport");
+});

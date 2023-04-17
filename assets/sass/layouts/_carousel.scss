@@ -1,23 +1,14 @@
 .carousel {
+  @include center;
+  padding-top: 50px;
+  width: 70%;
   .container-indicators {
     width: 100px;
     position: absolute;
     right: 0;
     top: calc(var(--slider-py) - 60px);
     visibility: hidden;
-    .indicator {
-      width: 15px;
-      height: 2px;
-      background-color: grey;
-      display: inline-block;
-    }
-    .indicator.active {
-      background-color: white;
-    }
   }
-  @include center;
-  padding-top: 50px;
-  width: 70%;
   .carousel-slider {
     display: flex;
     flex-direction: column;
@@ -32,17 +23,17 @@
       font-weight: 600;
     }
     .carousel-list {
-      position: relative;
       display: flex;
       margin-top: 20px;
       margin-bottom: 35px;
       white-space: nowrap;
-      overflow-x: scroll;
-      overflow-y: visible;
       .carousel-item {
         position: relative;
-        width: 60%;
-        padding-right: 30px;
+        width: 100%;
+        margin-right: 48px;
+        @include media($media1150){
+          margin-right: 1%;
+        }
         font-size: 0.8rem;
         :hover {
           transform: scale(1.3);
