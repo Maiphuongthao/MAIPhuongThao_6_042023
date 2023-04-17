@@ -1,0 +1,79 @@
+.modal {
+  position: fixed;
+  transform: translate(13%, 5%);
+  top: 0;
+  background-color: $back-ground-color;
+  border: none;
+  border-radius: $border-radius;
+  width: $size0-8;
+  z-index: 6;
+
+  .modal-content {
+    @include flexbox;
+    gap: 3%;
+    padding: 1%;
+    @include sizing($size1, $size1);
+    background-color: transparent;
+    .modal-image {
+      display: flex;
+      justify-content: center;
+      padding-top: 8%;
+      height: 50%;
+      img {
+        @include sizing($size1, $size1);
+        object-fit: cover;
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    .modal-movie-info {
+      @include sizing(56%, $size1);
+      @include flexnav;
+      margin: 5%;
+      .headding {
+        width: $size1;
+      }
+      .modal-body {
+        padding-top: 3%;
+        @include flexnav;
+        gap: 4px;
+        .info1 {
+          width: 45%;
+          .actors {
+            width: 45%;
+          }
+        }
+        .info2 {
+          width: 45%;
+        }
+        p {
+          color: #a9a9a9;
+          span {
+            color: $text-color;
+          }
+        }
+      }
+    }
+    .yellow {
+      color: yellow;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include sizing($size1, $size1);
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+.hidden {
+  display: none;
+}

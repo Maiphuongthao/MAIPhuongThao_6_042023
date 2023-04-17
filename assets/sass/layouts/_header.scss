@@ -1,0 +1,44 @@
+.container {
+  width: $size1;
+  position: relative;
+  background-color: transparentize($color: #000000, $amount: 0.7);
+  .navbar {
+    @include flexnav;
+    width: 85%;
+    margin: 0 auto;
+    background-color: transparent;
+    .logo img {
+      width: 140px;
+      padding: 10px;
+    }
+    .left-nav {
+      @include flexnav;
+      width: 50%;
+      align-items: center;
+      justify-content: flex-end;
+      ul {
+        @include flexnav;
+        @include media($media550) {
+          flex-direction: column;
+        }
+        li {
+          color: $text-color;
+          list-style: none;
+          font-size: 1rem;
+          font-weight: 600;
+          margin-left: 15px;
+          @include media($media1150) {
+            margin-right: 30px;
+          }
+          @include media($media550) {
+            margin-bottom: 10px;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

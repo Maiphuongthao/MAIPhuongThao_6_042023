@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+}
+html {
+  font-size: 16px;
+  background-color: $back-ground-color;
+}
+h1,
+h2 {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+  text-transform: capitalize;
+  color: $text-color;
+}
+h3 {
+  @include h3;
+}
