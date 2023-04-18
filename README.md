@@ -22,8 +22,13 @@ Refer to the [documentation](https://github.com/OpenClassrooms-Student-Center/OC
 Clone the project: `git clone git@github.com:Maiphuongthao/MAIPhuongThao_6_042023.git`.
 
 To modify CSS: 
+
+
 Run `npm run sass` => compile sass for dev ( not minified). Watch for any change inside scss files.
+
+
 Run `npm run start` => compile sass for prod ( minified). Don't watch for any change inside scss file.
+
 
 # Usage
 
