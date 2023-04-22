@@ -5,6 +5,9 @@
   width: 70%;
   height: 80vh;
   @include center;
+  @include media(798px) {
+    height: 60vh;
+  }
   .banner {
     display: flex;
     gap: 10%;
@@ -64,7 +67,7 @@
         position: absolute;
         padding-top: 0;
         width: 70%;
-        height: 80vh;
+        height: 60vh;
         z-index: 1;
         opacity: 0.5;
       }
