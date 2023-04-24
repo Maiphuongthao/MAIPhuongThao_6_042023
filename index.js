@@ -248,4 +248,5 @@ window.addEventListener("load", (e) => {
   buildCarousel("Comedy", "comedy");
   buildCarousel("Family", "family");
   buildCarousel("Sport", "sport");
+  buildCarousel("Romantique", "romance")
 });
